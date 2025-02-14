@@ -12,8 +12,7 @@ public class StudentEntity {
     public StudentEntity() {
     }
 
-    public StudentEntity(String student_id, String student_name, String dob, String year, String contact,
-            String password, String program_id) {
+    public StudentEntity(String student_id, String student_name, String dob, String year, String contact,String password, String program_id) {
         this.student_id = student_id;
         this.student_name = student_name;
         this.dob = dob;

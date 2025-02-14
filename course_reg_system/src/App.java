@@ -1,4 +1,8 @@
 import java.net.URL;
+
+// import dao.custom.impl.CourseDaoIMPL;
+// import dao.custom.impl.StudentDaoIMPL;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,8 +11,17 @@ import javafx.stage.Stage;
 
 public class App extends Application{
     
-        public static void main(String[] args) throws Exception {
-            System.out.println("Hello, World!");
+    //test vars
+    //private static CourseDaoIMPL courseDaoIMPL = new CourseDaoIMPL();
+    //private static StudentDaoIMPL studentDaoIMPL = new StudentDaoIMPL();
+
+    public static void main(String[] args) throws Exception {
+        System.out.println("Hello, World!");
+
+        //tests
+        //System.out.println(courseDaoIMPL.getAll());
+        //System.out.println(studentDaoIMPL.getAll());
+
         launch(args);
     }
 

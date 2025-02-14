@@ -54,12 +54,12 @@ public class CourseDaoIMPL implements CourseDao {
 
     @Override
     public boolean update(CourseEntity t) throws Exception {
-        return CrudUtil.executeUpdate("UPDATE course SET course_id = ?, title = ?, cred_hrs = ?, max_enrollcap = ?, department_id = ?",
-                t.getCourse_id(), 
+        return CrudUtil.executeUpdate("UPDATE course SET title = ?, cred_hrs = ?, max_enrollcap = ?, department_id = ? WHERE course_id = ?",
                 t.getTitle(), 
                 t.getCred_hrs(), 
                 t.getMax_enrollcap(), 
-                t.getDepartment_id());
+                t.getDepartment_id(),
+                t.getCourse_id());
     }
     
 
