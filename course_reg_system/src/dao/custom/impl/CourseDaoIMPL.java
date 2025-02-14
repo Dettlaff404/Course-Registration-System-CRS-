@@ -61,12 +61,4 @@ public class CourseDaoIMPL implements CourseDao {
                 t.getDepartment_id(),
                 t.getCourse_id());
     }
-
-    @Override
-    public boolean delete(String id, String id2) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
-    }
-    
-
 }

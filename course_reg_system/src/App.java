@@ -5,6 +5,8 @@ import java.net.URL;
 // import dao.custom.impl.CourseDaoIMPL;
 // import dao.custom.impl.StudentDaoIMPL;
 // import entity.PrerequisiteEntity;
+// import dao.custom.impl.EnrollmentDaoIMPL;
+// import entity.EnrollmentEntity;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +20,7 @@ public class App extends Application{
     //private static CourseDaoIMPL courseDaoIMPL = new CourseDaoIMPL();
     //private static StudentDaoIMPL studentDaoIMPL = new StudentDaoIMPL();
     // private static PrerequisiteDaoIMPL prereqDaoIMPL = new PrerequisiteDaoIMPL();
+    // private static EnrollmentDaoIMPL enrollmentDaoIMPL = new EnrollmentDaoIMPL();
 
     public static void main(String[] args) throws Exception {
         System.out.println("Hello, World!");
@@ -27,6 +30,8 @@ public class App extends Application{
         //System.out.println(studentDaoIMPL.getAll());
         // PrerequisiteEntity prereq = new PrerequisiteEntity("PSY202", "PSY101");
         // System.out.println(prereqDaoIMPL.save(prereq));
+        // EnrollmentEntity enrollment = new EnrollmentEntity("E040", "S020", "CHEM202", "Fall2021", 'B');
+        // System.out.println(enrollmentDaoIMPL.save(enrollment));
 
         launch(args);
     }

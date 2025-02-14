@@ -2,11 +2,10 @@ package dao.custom.impl;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
 import dao.CrudUtil;
 import dao.custom.PrerequisiteDao;
 import entity.PrerequisiteEntity;
-import entity.StudentEntity;
+
 
 public class PrerequisiteDaoIMPL implements PrerequisiteDao{
 
@@ -42,6 +41,7 @@ public class PrerequisiteDaoIMPL implements PrerequisiteDao{
         return CrudUtil.executeUpdate("DELETE FROM prerequisites WHERE course_id = ? AND prereq_course_id = ?", id, prereq_id);
     }
 
+    @Override
     public ArrayList<PrerequisiteEntity> getPrereqs(String id) throws Exception {
         ArrayList<PrerequisiteEntity> prereqEntities = new ArrayList<>(); 
         ResultSet rst = CrudUtil.executeQuery("SELECT * FROM prerequisites WHERE course_id = ?", id);
