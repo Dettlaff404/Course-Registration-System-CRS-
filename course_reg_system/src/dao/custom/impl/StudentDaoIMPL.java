@@ -70,4 +70,10 @@ public class StudentDaoIMPL implements StudentDao {
         return studentEntities;
     }
 
+    @Override
+    public boolean delete(String id, String id2) throws Exception {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+
 }
