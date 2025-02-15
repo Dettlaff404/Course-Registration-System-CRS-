@@ -38,7 +38,7 @@ public class App extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        URL resource = getClass().getResource("./view/main.fxml");
+        URL resource = getClass().getResource("./view/login.fxml");
         Parent root = FXMLLoader.load(resource);
         primaryStage.setScene(new Scene(root));
         primaryStage.setTitle("Course Registration System");
