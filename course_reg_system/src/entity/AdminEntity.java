@@ -13,8 +13,7 @@ public class AdminEntity {
     public AdminEntity() {
     }
 
-    public AdminEntity(String admin_id, String title, String full_name, String dob, String contact, String email,
-            String password, String post) {
+    public AdminEntity(String admin_id, String title, String full_name, String dob, String contact, String email, String password, String post) {
         this.admin_id = admin_id;
         this.title = title;
         this.full_name = full_name;
