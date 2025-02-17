@@ -51,8 +51,7 @@ public class LogInController {
 
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/StudentPortal.fxml"));
-            Parent root = loader.load();
-            stage.setScene(new Scene(root));
+            stage.setScene(new Scene(loader.load()));
             StudentPortalController studentPortalController = loader.getController();
             studentPortalController.initialize(txtID.getText());
             stage.setTitle("Student Portal");
@@ -62,9 +61,12 @@ public class LogInController {
         } else if(txtID.getText().charAt(0) == 'A' && logInService.adminLogIn(txtID.getText(), txtPassword.getText())) {
             System.out.println("Admin Login successful!");
 
+            Stage stage = new Stage();
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/AdminPortal.fxml"))));
+            stage.setTitle("Admin Portal");
+            stage.show();
 
-
-            // logInScreen.getScene().getWindow().hide();
+            logInScreen.getScene().getWindow().hide();
         } else {
             lblDetails.setText("\nPassword incorrect. Try again...");
             lblDetails.setTextFill(Color.RED);
@@ -92,7 +94,7 @@ public class LogInController {
                 } else if (txtID.getText().charAt(0) == 'A') {
                     AdminDto adminDto = logInService.searchAdmin(txtID.getText());
                     if (adminDto != null) {
-                        lblDetails.setText("- STAFF ("+adminDto.getPost()+")\nWelcome " + adminDto.getTitle() + adminDto.getFull_name());
+                        lblDetails.setText("- STAFF ("+adminDto.getPost()+") -\nWelcome " + adminDto.getTitle() + adminDto.getFull_name());
                         lblDetails.setTextFill(Color.GREEN);
                         passwordSetVisible();
                     } else {
