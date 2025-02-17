@@ -24,13 +24,14 @@ public class StudentPortalController {
 
     @FXML
     void btnAcademicRecordOnAction(ActionEvent event) throws Exception {
-        Stage stage = new Stage();
+
+        Stage stage2 = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/AcademicRecord.fxml"));
-        stage.setScene(new Scene(loader.load()));
+        stage2.setScene(new Scene(loader.load()));
         AcademicRecordController academicRecordController = loader.getController();
         academicRecordController.initialize(student_id);
-        stage.setTitle("Student Portal");
-        stage.show();
+        stage2.setTitle("Academic Record");
+        stage2.show();
     }
 
     @FXML

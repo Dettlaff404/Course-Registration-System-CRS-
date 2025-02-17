@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="lblName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AcademicRecordController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="561.0" prefWidth="656.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AcademicRecordController">
    <children>
       <Label alignment="CENTER" layoutX="71.0" layoutY="14.0" prefHeight="44.0" prefWidth="479.0" text="Academic Record" textFill="#ff0505">
          <font>
@@ -21,52 +20,52 @@
             <Image url="@../img/ijse@1x.png" />
          </image>
       </ImageView>
-      <Label layoutX="43.0" layoutY="138.0" prefHeight="40.0" prefWidth="67.0" text="Name :">
+      <Label layoutX="40.0" layoutY="138.0" prefHeight="40.0" prefWidth="67.0" text="Name :">
          <font>
             <Font name="Gotham-Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblName" layoutX="119.0" layoutY="138.0" prefHeight="40.0" prefWidth="313.0" text="Xander Phillips">
+      <Label fx:id="lblName" layoutX="116.0" layoutY="138.0" prefHeight="40.0" prefWidth="313.0" text="Xander Phillips">
          <font>
             <Font name="Gotham-MediumItalic" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="43.0" layoutY="88.0" prefHeight="40.0" prefWidth="42.0" text="ID :">
+      <Label layoutX="40.0" layoutY="88.0" prefHeight="40.0" prefWidth="42.0" text="ID :">
          <font>
             <Font name="Gotham-Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblId" layoutX="85.0" layoutY="88.0" prefHeight="40.0" prefWidth="67.0" text="S002">
+      <Label fx:id="lblId" layoutX="82.0" layoutY="88.0" prefHeight="40.0" prefWidth="67.0" text="S002">
          <font>
             <Font name="Gotham-MediumItalic" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="191.0" layoutY="88.0" prefHeight="40.0" prefWidth="67.0" text="Year :">
+      <Label layoutX="188.0" layoutY="88.0" prefHeight="40.0" prefWidth="67.0" text="Year :">
          <font>
             <Font name="Gotham-Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblYear" layoutX="258.0" layoutY="88.0" prefHeight="40.0" prefWidth="59.0" text="2021">
+      <Label fx:id="lblYear" layoutX="255.0" layoutY="88.0" prefHeight="40.0" prefWidth="59.0" text="2021">
          <font>
             <Font name="Gotham-MediumItalic" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="468.0" layoutY="138.0" prefHeight="40.0" prefWidth="85.0" text="Faculty : ">
+      <Label layoutX="465.0" layoutY="138.0" prefHeight="40.0" prefWidth="85.0" text="Faculty : ">
          <font>
             <Font name="Gotham-Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblFaculty" layoutX="555.0" layoutY="138.0" prefHeight="40.0" prefWidth="73.0" text="MATH">
+      <Label fx:id="lblFaculty" alignment="CENTER_RIGHT" layoutX="546.0" layoutY="138.0" prefHeight="40.0" prefWidth="67.0" text="MATH">
          <font>
             <Font name="Gotham-MediumItalic" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="365.0" layoutY="88.0" prefHeight="40.0" prefWidth="140.0" text="Date of Birth :">
+      <Label layoutX="362.0" layoutY="88.0" prefHeight="40.0" prefWidth="140.0" text="Date of Birth :">
          <font>
             <Font name="Gotham-Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lblDob" layoutX="499.0" layoutY="88.0" prefHeight="40.0" prefWidth="123.0" text=" 2002-05-14">
+      <Label fx:id="lblDob" alignment="CENTER_RIGHT" layoutX="496.0" layoutY="88.0" prefHeight="40.0" prefWidth="117.0" text=" 2002-05-14">
          <font>
             <Font name="Gotham-MediumItalic" size="18.0" />
          </font>
