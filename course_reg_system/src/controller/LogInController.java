@@ -4,16 +4,13 @@ import dto.AdminDto;
 import dto.StudentDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import service.ServiceFactory;
-import service.ServiceFactory.ServiceType;
 import service.custom.LogInService;
 
 public class LogInController {
@@ -44,8 +41,18 @@ public class LogInController {
     private LogInService logInService = (LogInService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.LOGIN);
 
     @FXML
-    void btnLogInOnAction(ActionEvent event) {
-
+    void btnLogInOnAction(ActionEvent event) throws Exception {
+        if (txtID.getText().charAt(0) == 'S' && logInService.studentLogIn(txtID.getText(), txtPassword.getText())) {
+            System.out.println("Student Login successful!");
+            // logInScreen.getScene().getWindow().hide();
+        } else if(txtID.getText().charAt(0) == 'A' && logInService.adminLogIn(txtID.getText(), txtPassword.getText())) {
+            System.out.println("Admin Login successful!");
+            // logInScreen.getScene().getWindow().hide();
+        } else {
+            lblDetails.setText("\nPassword incorrect. Try again...");
+            lblDetails.setTextFill(Color.RED);
+            lblDetails.setVisible(true);
+        }
     }
 
     @FXML

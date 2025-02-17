@@ -46,4 +46,14 @@ public class LogInServiceIMPL implements LogInService {
         return null;
     }
 
+    @Override
+    public boolean studentLogIn(String id, String password) throws Exception {
+        return studentDao.searchById(id).getPassword().equals(password);
+    }
+
+    @Override
+    public boolean adminLogIn(String id, String password) throws Exception {
+        return adminDao.searchById(id).getPassword().equals(password);
+    }
+
 }
