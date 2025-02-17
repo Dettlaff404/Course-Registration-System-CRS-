@@ -1,5 +1,11 @@
 package dao;
 
+import dao.custom.impl.AdminDaoIMPL;
+import dao.custom.impl.CourseDaoIMPL;
+import dao.custom.impl.EnrollmentDaoIMPL;
+import dao.custom.impl.PrerequisiteDaoIMPL;
+import dao.custom.impl.StudentDaoIMPL;
+
 public class DaoFactory {
     private static DaoFactory daoFactory;
 
@@ -16,19 +22,21 @@ public class DaoFactory {
     public SuperDao getDao(DaoTypes type) {
         switch (type) {
             case COURSE:
-                return null;
+                return new CourseDaoIMPL();
             case STUDENT:
-                return null;
+                return new StudentDaoIMPL();
+            case ADMIN:
+                return new AdminDaoIMPL();
             case ENROLLMENT:
-                return null;
+                return new EnrollmentDaoIMPL();
             case PREREQUISITE:
-                return null;
+                return new PrerequisiteDaoIMPL();
             default:
                 return null;
         }
     }
 
     public enum DaoTypes {
-        COURSE, STUDENT, ENROLLMENT, PREREQUISITE
+        COURSE, STUDENT, ENROLLMENT, PREREQUISITE, ADMIN
     }
 }

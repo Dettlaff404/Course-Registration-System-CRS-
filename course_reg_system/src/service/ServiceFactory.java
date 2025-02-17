@@ -1,5 +1,7 @@
 package service;
 
+import service.custom.impl.LogInServiceIMPL;
+
 public class ServiceFactory {
     private static ServiceFactory serviceFactory;
 
@@ -13,23 +15,21 @@ public class ServiceFactory {
         return serviceFactory;
     }
 
-    public SuperService getSuperService(RoleType type) {
+    public SuperService getService(ServiceType type) {
         switch (type) {
             case FACULTY,STAFF:
                 return null;
             case STUDENT:
                 return null;
+            case LOGIN:
+                return new LogInServiceIMPL();
             default:
                 return null;
         }
     }
 
     public enum ServiceType {
-           
-    }
-
-    public enum RoleType {
-        FACULTY,STAFF,STUDENT
+        STUDENT, FACULTY, STAFF, LOGIN
     }
 
 }
