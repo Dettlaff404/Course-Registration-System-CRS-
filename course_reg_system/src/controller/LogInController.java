@@ -4,12 +4,16 @@ import dto.AdminDto;
 import dto.StudentDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import service.ServiceFactory;
 import service.custom.LogInService;
 
@@ -44,9 +48,22 @@ public class LogInController {
     void btnLogInOnAction(ActionEvent event) throws Exception {
         if (txtID.getText().charAt(0) == 'S' && logInService.studentLogIn(txtID.getText(), txtPassword.getText())) {
             System.out.println("Student Login successful!");
-            // logInScreen.getScene().getWindow().hide();
+
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/StudentPortal.fxml"));
+            Parent root = loader.load();
+            stage.setScene(new Scene(root));
+            StudentPortalController studentPortalController = loader.getController();
+            studentPortalController.initialize(txtID.getText());
+            stage.setTitle("Student Portal");
+            stage.show();
+
+            logInScreen.getScene().getWindow().hide();
         } else if(txtID.getText().charAt(0) == 'A' && logInService.adminLogIn(txtID.getText(), txtPassword.getText())) {
             System.out.println("Admin Login successful!");
+
+
+
             // logInScreen.getScene().getWindow().hide();
         } else {
             lblDetails.setText("\nPassword incorrect. Try again...");
