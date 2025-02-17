@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StudentCourseSearchController">
    <children>
       <Label alignment="CENTER" layoutX="81.0" layoutY="14.0" prefHeight="44.0" prefWidth="479.0" text="Courses" textFill="#ff0505">
@@ -22,8 +21,8 @@
         <columns>
           <TableColumn fx:id="colCourseId" prefWidth="75.0" text="Course ID" />
           <TableColumn fx:id="colCourseName" prefWidth="259.0" text="Course Name" />
-            <TableColumn fx:id="colCredHrs" prefWidth="68.0" text="Cred hrs" />
-            <TableColumn fx:id="colDepartment" prefWidth="74.0" text="Department" />
+            <TableColumn fx:id="colCredHrs" prefWidth="57.0" text="Cred hrs" />
+            <TableColumn fx:id="colDepartment" prefWidth="87.0" text="Department" />
             <TableColumn fx:id="colSpotsLeft" prefWidth="74.0" text="Spots Left" />
         </columns>
          <columnResizePolicy>

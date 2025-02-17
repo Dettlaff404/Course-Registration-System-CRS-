@@ -2,6 +2,7 @@ package service;
 
 import service.custom.impl.AcademicRecordServiceIMPL;
 import service.custom.impl.LogInServiceIMPL;
+import service.custom.impl.StudentCourseSearchIMPL;
 
 public class ServiceFactory {
     private static ServiceFactory serviceFactory;
@@ -22,13 +23,15 @@ public class ServiceFactory {
                 return new AcademicRecordServiceIMPL();
             case LOGIN:
                 return new LogInServiceIMPL();
+            case STUDENT_COURSE_SEARCH:
+                return new StudentCourseSearchIMPL();
             default:
                 return null;
         }
     }
 
     public enum ServiceType {
-        LOGIN, ACADEMIC_RECORD
+        LOGIN, ACADEMIC_RECORD, STUDENT_COURSE_SEARCH
     }
 
 }
