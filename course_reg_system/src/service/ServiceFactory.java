@@ -1,5 +1,6 @@
 package service;
 
+import service.custom.impl.AcademicRecordServiceIMPL;
 import service.custom.impl.LogInServiceIMPL;
 
 public class ServiceFactory {
@@ -17,10 +18,8 @@ public class ServiceFactory {
 
     public SuperService getService(ServiceType type) {
         switch (type) {
-            case FACULTY,STAFF:
-                return null;
-            case STUDENT:
-                return null;
+            case ACADEMIC_RECORD:
+                return new AcademicRecordServiceIMPL();
             case LOGIN:
                 return new LogInServiceIMPL();
             default:
@@ -29,7 +28,7 @@ public class ServiceFactory {
     }
 
     public enum ServiceType {
-        STUDENT, FACULTY, STAFF, LOGIN
+        LOGIN, ACADEMIC_RECORD
     }
 
 }

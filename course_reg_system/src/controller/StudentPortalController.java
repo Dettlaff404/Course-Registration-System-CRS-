@@ -2,7 +2,10 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import service.ServiceFactory;
 import service.custom.LogInService;
 
@@ -20,15 +23,24 @@ public class StudentPortalController {
     }
 
     @FXML
-    void btnCoursesOnAction(ActionEvent event) {
-        System.out.println(student_id+" Courses");
+    void btnAcademicRecordOnAction(ActionEvent event) throws Exception {
+
+        Stage stage2 = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/AcademicRecord.fxml"));
+        stage2.setScene(new Scene(loader.load()));
+        AcademicRecordController academicRecordController = loader.getController();
+        academicRecordController.initialize(student_id);
+        stage2.setTitle("Academic Record");
+        stage2.show();
     }
 
     @FXML
-    void btnStudentReportOnAction(ActionEvent event) {
-        System.out.println(student_id+" Report");
+    void btnCurrentlyFollowingOnAction(ActionEvent event) {
+
     }
 
-    
+    @FXML
+    void btnSearchCoursesOnAction(ActionEvent event) {
 
+    }
 }

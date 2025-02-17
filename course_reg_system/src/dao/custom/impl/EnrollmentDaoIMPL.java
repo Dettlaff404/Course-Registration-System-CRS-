@@ -64,9 +64,9 @@ public class EnrollmentDaoIMPL implements EnrollmentDao {
     }
 
     @Override
-    public ArrayList<EnrollmentEntity> searchByStudentId(String id) throws Exception {
+    public ArrayList<EnrollmentEntity> searchByStudentIdCompleted(String id) throws Exception {
         ArrayList<EnrollmentEntity> enrollmentEntities = new ArrayList<>();
-        ResultSet rst = CrudUtil.executeQuery("SELECT * FROM enrollments WHERE student_id = ?", id);
+        ResultSet rst = CrudUtil.executeQuery("SELECT * FROM enrollments WHERE student_id = ? AND NOT(grade = '')", id);
         while (rst.next()) {            
             enrollmentEntities.add(new EnrollmentEntity(
                 rst.getString("enrollment_id"),
@@ -74,6 +74,21 @@ public class EnrollmentDaoIMPL implements EnrollmentDao {
                 rst.getString("course_id"),
                 rst.getString("semester"),
                 rst.getString("grade").charAt(0)));
+        }
+        return enrollmentEntities;
+    }
+
+    @Override
+    public ArrayList<EnrollmentEntity> searchByStudentIdCurrentlyFollowing(String id) throws Exception {
+        ArrayList<EnrollmentEntity> enrollmentEntities = new ArrayList<>();
+        ResultSet rst = CrudUtil.executeQuery("SELECT * FROM enrollments WHERE student_id = ? AND grade = ''", id);
+        while (rst.next()) {            
+            enrollmentEntities.add(new EnrollmentEntity(
+                rst.getString("enrollment_id"),
+                rst.getString("student_id"),
+                rst.getString("course_id"),
+                rst.getString("semester"),
+                null));
         }
         return enrollmentEntities;
     }

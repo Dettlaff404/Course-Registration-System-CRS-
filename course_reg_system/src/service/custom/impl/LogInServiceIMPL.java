@@ -24,7 +24,6 @@ public class LogInServiceIMPL implements LogInService {
                     studentEntity.getDob(),
                     studentEntity.getDob().toString().split("-")[0],
                     studentEntity.getContact(),
-                    studentEntity.getPassword(),
                     studentEntity.getProgram_id()
             );
         }

@@ -4,16 +4,18 @@ public class EnrollmentDto {
     private String enrollment_id;
     private String student_id;
     private String course_id;
+    private String course_name;
     private String semester;
-    private char grade;
+    private Character grade;
 
     public EnrollmentDto() {
     }
 
-    public EnrollmentDto(String enrollment_id, String student_id, String course_id, String semester, char grade) {
+    public EnrollmentDto(String enrollment_id, String student_id, String course_id, String course_name, String semester,Character grade) {
         this.enrollment_id = enrollment_id;
         this.student_id = student_id;
         this.course_id = course_id;
+        this.course_name = course_name;
         this.semester = semester;
         this.grade = grade;
     }
@@ -42,6 +44,14 @@ public class EnrollmentDto {
         this.course_id = course_id;
     }
 
+    public String getCourse_name() {
+        return course_name;
+    }
+
+    public void setCourse_name(String course_name) {
+        this.course_name = course_name;
+    }
+
     public String getSemester() {
         return semester;
     }
@@ -50,17 +60,13 @@ public class EnrollmentDto {
         this.semester = semester;
     }
 
-    public char getGrade() {
+    public Character getGrade() {
         return grade;
     }
 
-    public void setGrade(char grade) {
+    public void setGrade(Character grade) {
         this.grade = grade;
     }
 
-    @Override
-    public String toString() {
-        return "EnrollmentDto [enrollment_id=" + enrollment_id + ", student_id=" + student_id + ", course_id="
-                + course_id + ", semester=" + semester + ", grade=" + grade + "]";
-    }
+    
 }

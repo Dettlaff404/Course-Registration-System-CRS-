@@ -6,20 +6,18 @@ public class StudentDto {
     private String dob;
     private String year;
     private String contact;
-    private String password;
     private String program_id;
 
     public StudentDto(){
 
     } 
 
-    public StudentDto(String student_id, String student_name, String dob, String year, String contact, String password, String program_id) {
+    public StudentDto(String student_id, String student_name, String dob, String year, String contact, String program_id) {
         this.student_id = student_id;
         this.student_name = student_name;
         this.dob = dob;
         this.year = year;
         this.contact = contact;
-        this.password = password;
         this.program_id = program_id;
     }
 
@@ -63,14 +61,6 @@ public class StudentDto {
         this.contact = contact;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getProgram_id() {
         return program_id;
     }
@@ -82,6 +72,6 @@ public class StudentDto {
     @Override
     public String toString() {
         return "StudentDto [student_id=" + student_id + ", student_name=" + student_name + ", dob=" + dob + ", year="
-                + year + ", contact=" + contact + ", password=" + password + ", program_id=" + program_id + "]";
+                + year + ", contact=" + contact + ", program_id=" + program_id + "]";
     }
 }
