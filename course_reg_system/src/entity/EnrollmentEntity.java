@@ -5,12 +5,12 @@ public class EnrollmentEntity {
     private String student_id;
     private String course_id;
     private String semester;
-    private char grade;
+    private Character grade;
 
     public EnrollmentEntity() {
     }
 
-    public EnrollmentEntity(String enrollment_id, String student_id, String course_id, String semester, char grade) {
+    public EnrollmentEntity(String enrollment_id, String student_id, String course_id, String semester, Character grade) {
         this.enrollment_id = enrollment_id;
         this.student_id = student_id;
         this.course_id = course_id;
@@ -50,11 +50,11 @@ public class EnrollmentEntity {
         this.semester = semester;
     }
 
-    public char getGrade() {
+    public Character getGrade() {
         return grade;
     }
 
-    public void setGrade(char grade) {
+    public void setGrade(Character grade) {
         this.grade = grade;
     }
 
