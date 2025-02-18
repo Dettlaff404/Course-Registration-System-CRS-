@@ -34,7 +34,7 @@
             <Image url="@../img/ijse@1x.png" />
          </image>
       </ImageView>
-      <Button disable="true" layoutX="418.0" layoutY="379.0" mnemonicParsing="false" onAction="#btnEnrollOnAction" prefHeight="38.0" prefWidth="160.0" style="-fx-background-color: Green;" text="Enroll" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="btnEnroll" disable="true" layoutX="418.0" layoutY="379.0" mnemonicParsing="false" onAction="#btnEnrollOnAction" prefHeight="38.0" prefWidth="160.0" style="-fx-background-color: Green;" text="Enroll" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="☞Gilroy-Bold" size="22.0" />
          </font>
@@ -42,5 +42,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Label fx:id="lblResponse" alignment="TOP_LEFT" layoutX="22.0" layoutY="379.0" prefHeight="40.0" prefWidth="369.0">
+         <font>
+            <Font name="☞Gilroy-Medium" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

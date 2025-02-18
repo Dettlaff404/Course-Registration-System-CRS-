@@ -7,9 +7,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import service.ServiceFactory;
 import service.custom.StudentCourseSearchService;
 
@@ -33,6 +36,12 @@ public class StudentCourseSearchController {
     @FXML
     private TableView<CourseDto> tblCourses;
 
+     @FXML
+    private Button btnEnroll;
+
+    @FXML
+    private Label lblResponse;
+
     private String student_id;
     private StudentCourseSearchService studentCourseSearchService = (StudentCourseSearchService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.STUDENT_COURSE_SEARCH);
 
@@ -43,7 +52,6 @@ public class StudentCourseSearchController {
 
     public void initialize(String student_id) throws Exception {
         this.student_id = student_id;
-        System.out.println(student_id);
 
         setTable();
         colCourseId.setCellValueFactory(new PropertyValueFactory<>("course_id"));
@@ -54,6 +62,26 @@ public class StudentCourseSearchController {
         colCredHrs.setStyle("-fx-alignment: CENTER;");
         colDepartment.setStyle("-fx-alignment: CENTER;");
         colSpotsLeft.setStyle("-fx-alignment: CENTER;");
+
+        tblCourses.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+
+            try {
+                if(newSelection!=null && studentCourseSearchService.canEnroll(student_id, newSelection.getCourse_id())){
+                    btnEnroll.setDisable(false);
+                    lblResponse.setText("");
+                } else {
+                    btnEnroll.setDisable(true);
+                    lblResponse.setText("Enrollment Reqirements not met. \nSelect another course.");
+                    lblResponse.setTextFill(Color.RED);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println(e.getMessage());
+                lblResponse.setText(e.getMessage());
+                lblResponse.setTextFill(Color.RED);
+            }
+
+        });
     }
 
     public void setTable() throws Exception {

@@ -11,21 +11,23 @@ public class EnrollmentDaoIMPL implements EnrollmentDao {
 
     @Override
     public boolean save(EnrollmentEntity t) throws Exception {
-        return CrudUtil.executeUpdate("INSERT INTO enrollments VALUES(?,?,?,?,?)",
+        return CrudUtil.executeUpdate("INSERT INTO enrollments VALUES(?,?,?,?,?,?)",
             t.getEnrollment_id(),
             t.getStudent_id(),
             t.getCourse_id(),
             t.getSemester(),
-            String.valueOf(t.getGrade()));
+            String.valueOf(t.getGrade()),
+            t.getEnrolled_date());
     }
 
     @Override
     public boolean update(EnrollmentEntity t) throws Exception {
-        return CrudUtil.executeUpdate("UPDATE enrollments SET student_id=?, course_id=?, semester=?, grade=? WHERE enrollment_id = ?",
+        return CrudUtil.executeUpdate("UPDATE enrollments SET student_id=?, course_id=?, semester=?, grade=?, enrolled_date = ?  WHERE enrollment_id = ?",
                 t.getStudent_id(),
                 t.getCourse_id(),
                 t.getSemester(),
                 String.valueOf(t.getGrade()),
+                t.getEnrolled_date(),
                 t.getEnrollment_id());
     }
 
@@ -39,7 +41,9 @@ public class EnrollmentDaoIMPL implements EnrollmentDao {
                 rst.getString("student_id"),
                 rst.getString("course_id"),
                 rst.getString("semester"),
-                rst.getString("grade").charAt(0)));
+                rst.getString("grade").charAt(0),
+                rst.getString("enrolled_date")
+            ));
         }
         return enrollmentEntities;
     }
@@ -58,7 +62,9 @@ public class EnrollmentDaoIMPL implements EnrollmentDao {
                 rst.getString("student_id"),
                 rst.getString("course_id"),
                 rst.getString("semester"),
-                rst.getString("grade").charAt(0));
+                rst.getString("grade").charAt(0),
+                rst.getString("enrolled_date")
+            );
         }
         return null;
     }
@@ -73,7 +79,9 @@ public class EnrollmentDaoIMPL implements EnrollmentDao {
                 rst.getString("student_id"),
                 rst.getString("course_id"),
                 rst.getString("semester"),
-                rst.getString("grade").charAt(0)));
+                rst.getString("grade").charAt(0),
+                rst.getString("enrolled_date")
+            ));
         }
         return enrollmentEntities;
     }
@@ -88,7 +96,9 @@ public class EnrollmentDaoIMPL implements EnrollmentDao {
                 rst.getString("student_id"),
                 rst.getString("course_id"),
                 rst.getString("semester"),
-                null));
+                null,
+                rst.getString("enrolled_date")
+            ));
         }
         return enrollmentEntities;
     }
