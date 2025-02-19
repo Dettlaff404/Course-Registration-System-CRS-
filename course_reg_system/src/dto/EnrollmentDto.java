@@ -1,31 +1,23 @@
 package dto;
 
 public class EnrollmentDto {
-    private String enrollment_id;
     private String student_id;
     private String course_id;
     private String course_name;
     private String semester;
     private Character grade;
+    private Integer id;
 
     public EnrollmentDto() {
     }
 
-    public EnrollmentDto(String enrollment_id, String student_id, String course_id, String course_name, String semester,Character grade) {
-        this.enrollment_id = enrollment_id;
+    public EnrollmentDto(String student_id, String course_id, String course_name, String semester,Character grade, Integer id) {
         this.student_id = student_id;
         this.course_id = course_id;
         this.course_name = course_name;
         this.semester = semester;
         this.grade = grade;
-    }
-
-    public String getEnrollment_id() {
-        return enrollment_id;
-    }
-
-    public void setEnrollment_id(String enrollment_id) {
-        this.enrollment_id = enrollment_id;
+        this.id = id;
     }
 
     public String getStudent_id() {
@@ -66,6 +58,20 @@ public class EnrollmentDto {
 
     public void setGrade(Character grade) {
         this.grade = grade;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "EnrollmentDto [student_id=" + student_id + ", course_id=" + course_id + ", course_name=" + course_name
+                + ", semester=" + semester + ", grade=" + grade + ", id=" + id + "]";
     }
 
     

@@ -24,13 +24,13 @@ public class AcademicRecordServiceIMPL implements AcademicRecordService {
 
         for (EnrollmentEntity enrollmentEntity : enrollmentEntities) {
             enrollmentDtos.add(new EnrollmentDto(
-                enrollmentEntity.getEnrollment_id(),
                 enrollmentEntity.getStudent_id(),
                 enrollmentEntity.getCourse_id(),
                 courseDao.searchById(enrollmentEntity.getCourse_id()).getTitle(),
                 enrollmentEntity.getSemester(),
-                enrollmentEntity.getGrade())
-            );
+                enrollmentEntity.getGrade(),
+                enrollmentEntity.getId()
+            ));
         }
         return enrollmentDtos;
     }

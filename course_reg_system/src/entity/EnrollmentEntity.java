@@ -1,29 +1,23 @@
 package entity;
 
 public class EnrollmentEntity {
-    private String enrollment_id;
     private String student_id;
     private String course_id;
     private String semester;
     private Character grade;
+    private String enrolled_date;
+    private Integer id;
 
     public EnrollmentEntity() {
     }
 
-    public EnrollmentEntity(String enrollment_id, String student_id, String course_id, String semester, Character grade) {
-        this.enrollment_id = enrollment_id;
+    public EnrollmentEntity( String student_id, String course_id, String semester, Character grade, String enrolled_date,Integer id) {
         this.student_id = student_id;
         this.course_id = course_id;
         this.semester = semester;
         this.grade = grade;
-    }
-
-    public String getEnrollment_id() {
-        return enrollment_id;
-    }
-
-    public void setEnrollment_id(String enrollment_id) {
-        this.enrollment_id = enrollment_id;
+        this.enrolled_date = enrolled_date;
+        this.id = id;
     }
 
     public String getStudent_id() {
@@ -58,10 +52,26 @@ public class EnrollmentEntity {
         this.grade = grade;
     }
 
+    public String getEnrolled_date() {
+        return enrolled_date;
+    }
+
+    public void setEnrolled_date(String enrolled_date) {
+        this.enrolled_date = enrolled_date;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
-        return "EnrollmentEntity [enrollment_id=" + enrollment_id + ", student_id=" + student_id + ", course_id="
-                + course_id + ", semester=" + semester + ", grade=" + grade + "]";
+        return "EnrollmentEntity [student_id=" + student_id + ", course_id=" + course_id + ", semester=" + semester
+                + ", grade=" + grade + ", enrolled_date=" + enrolled_date + ", id=" + id + "]";
     }
     
     

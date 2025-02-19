@@ -35,12 +35,22 @@ public class StudentPortalController {
     }
 
     @FXML
-    void btnCurrentlyFollowingOnAction(ActionEvent event) {
+    void btnCurrentlyFollowingOnAction(ActionEvent event) throws Exception {
+
+        
 
     }
 
     @FXML
-    void btnSearchCoursesOnAction(ActionEvent event) {
+    void btnSearchCoursesOnAction(ActionEvent event) throws Exception {
+
+        Stage stage2 = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/StudentCourseSearch.fxml"));
+        stage2.setScene(new Scene(loader.load()));
+        StudentCourseSearchController studentCourseSearchController = loader.getController();
+        studentCourseSearchController.initialize(student_id);
+        stage2.setTitle("Academic Record");
+        stage2.show();
 
     }
 }
