@@ -43,15 +43,30 @@ public class StudentCourseSearchController {
     private Label lblResponse;
 
     private String student_id;
+    private String course_id;
     private StudentCourseSearchService studentCourseSearchService = (StudentCourseSearchService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.STUDENT_COURSE_SEARCH);
 
     @FXML
     void btnEnrollOnAction(ActionEvent event) {
-
+        try {
+            String response = studentCourseSearchService.enrollCourse(student_id, course_id);
+            lblResponse.setText(response);
+            if (response.contains("Success!")) {
+                lblResponse.setTextFill(Color.GREEN);
+            } else {
+                lblResponse.setTextFill(Color.RED);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            lblResponse.setText(e.getMessage());
+            lblResponse.setTextFill(Color.RED);
+        }
     }
 
     public void initialize(String student_id) throws Exception {
         this.student_id = student_id;
+        btnEnroll.setDisable(true);
 
         setTable();
         colCourseId.setCellValueFactory(new PropertyValueFactory<>("course_id"));
@@ -64,7 +79,7 @@ public class StudentCourseSearchController {
         colSpotsLeft.setStyle("-fx-alignment: CENTER;");
 
         tblCourses.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-
+            course_id = newSelection.getCourse_id();
             try {
                 if(newSelection!=null && studentCourseSearchService.canEnroll(student_id, newSelection.getCourse_id())){
                     btnEnroll.setDisable(false);
