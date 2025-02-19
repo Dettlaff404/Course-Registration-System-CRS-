@@ -100,4 +100,13 @@ public class EnrollmentDaoIMPL implements EnrollmentDao {
         return enrollmentEntities;
     }
 
+    @Override
+    public Boolean enrolledPreiviously(String student_id, String courseId) throws Exception {
+        ResultSet rst = CrudUtil.executeQuery("SELECT * FROM enrollments WHERE student_id = ? AND course_id = ?", student_id, courseId);
+        if (rst.next() && !(rst.getString("grade").equals("F"))) {
+            return true;
+        }
+        return false;
+    }
+
 }
