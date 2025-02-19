@@ -52,6 +52,7 @@ public class StudentCourseSearchController {
             String response = studentCourseSearchService.enrollCourse(student_id, course_id);
             lblResponse.setText(response);
             if (response.contains("Enrolled Successfully")) {
+                setTable();
                 lblResponse.setTextFill(Color.GREEN);
             } else {
                 lblResponse.setTextFill(Color.RED);

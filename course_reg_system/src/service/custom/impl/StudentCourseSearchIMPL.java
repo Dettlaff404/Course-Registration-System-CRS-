@@ -73,7 +73,9 @@ public class StudentCourseSearchIMPL implements StudentCourseSearchService {
 
             if (enrollmentDao.enrolledPreiviously(student_id, courseId)) {
                 return "You have already enrolled in this course previously.\nSelect a different course.";
-            }   
+            } else if (courseDao.searchById(courseId).getMax_enrollcap() == 0) {
+                return "This course is full.\nSelect a different course.";
+            }
 
             String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             String semester = LocalDate.parse(date).getMonthValue() < 7 ? "Fall" : "Spring";
