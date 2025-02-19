@@ -1,11 +1,15 @@
 package service.custom.impl;
 
+import java.sql.Connection;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import dao.DaoFactory;
 import dao.custom.CourseDao;
 import dao.custom.EnrollmentDao;
 import dao.custom.PrerequisiteDao;
+import db.DBConnection;
 import dto.CourseDto;
 import entity.CourseEntity;
 import entity.EnrollmentEntity;
@@ -63,7 +67,46 @@ public class StudentCourseSearchIMPL implements StudentCourseSearchService {
 
     @Override
     public String enrollCourse(String student_id, String courseId) throws Exception {
-        return null;
+        Connection connection = DBConnection.getInstance().getConnection();
+        try {
+            connection.setAutoCommit(false);
+
+            String date = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            String semester = LocalDate.parse(date).getMonthValue() < 7 ? "Fall" : "Spring";
+            String year = LocalDate.parse(date).format(DateTimeFormatter.ofPattern("yyyy"));
+            semester = semester + year;
+            
+            EnrollmentEntity enrollmentEntity = new EnrollmentEntity(
+                student_id,
+                courseId, 
+                semester,
+                null,
+                date,
+                null  
+            );
+
+            CourseEntity courseEntity = courseDao.searchById(courseId);
+            courseEntity.setMax_enrollcap(courseEntity.getMax_enrollcap() - 1);
+            
+            System.out.println(enrollmentEntity);
+            System.out.println(courseEntity);
+
+            if ((enrollmentDao.save(enrollmentEntity)) && (courseDao.update(courseEntity))) {
+                connection.commit();
+                return "Enrolled Successfully";
+            } else {
+                connection.rollback();
+                return "Failed to Enroll,\nPlease Try Again...";
+            }
+
+        } catch (Exception e) {
+            connection.rollback();
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            throw e;
+        } finally {
+            connection.setAutoCommit(true);
+        }
     }
 
 }

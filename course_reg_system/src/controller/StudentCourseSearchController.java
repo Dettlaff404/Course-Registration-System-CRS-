@@ -51,7 +51,7 @@ public class StudentCourseSearchController {
         try {
             String response = studentCourseSearchService.enrollCourse(student_id, course_id);
             lblResponse.setText(response);
-            if (response.contains("Success!")) {
+            if (response.contains("Enrolled Successfully")) {
                 lblResponse.setTextFill(Color.GREEN);
             } else {
                 lblResponse.setTextFill(Color.RED);
@@ -59,7 +59,7 @@ public class StudentCourseSearchController {
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println(e.getMessage());
-            lblResponse.setText(e.getMessage());
+            lblResponse.setText("Error at Enrolling. \nPlease Contact Administration.");
             lblResponse.setTextFill(Color.RED);
         }
     }
@@ -92,7 +92,7 @@ public class StudentCourseSearchController {
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println(e.getMessage());
-                lblResponse.setText(e.getMessage());
+                lblResponse.setText("Error at Checking Enrollment Requirements. \nPlease Contact Administration.");
                 lblResponse.setTextFill(Color.RED);
             }
 

@@ -11,11 +11,11 @@ public class EnrollmentDaoIMPL implements EnrollmentDao {
 
     @Override
     public boolean save(EnrollmentEntity t) throws Exception {
-        return CrudUtil.executeUpdate("INSERT INTO enrollments VALUES(?,?,?,?,?)",
+        return CrudUtil.executeUpdate("INSERT INTO enrollments (student_id, course_id, semester, grade, enrolled_date) VALUES(?,?,?,?,?)",
             t.getStudent_id(),
             t.getCourse_id(),
             t.getSemester(),
-            String.valueOf(t.getGrade()),
+            String.valueOf(t.getGrade() != null ? t.getGrade() : ""),
             t.getEnrolled_date());
     }
 
