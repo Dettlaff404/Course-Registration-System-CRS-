@@ -36,9 +36,13 @@ public class StudentPortalController {
 
     @FXML
     void btnCurrentlyFollowingOnAction(ActionEvent event) throws Exception {
-
-        
-
+        Stage stage2 = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/StudentCurrentFollowingCourses.fxml"));
+        stage2.setScene(new Scene(loader.load()));
+        StudentCurrentlyFollowingCoursesController studentCurrentlyFollowingCoursesController = loader.getController();
+        studentCurrentlyFollowingCoursesController.initialize(student_id);
+        stage2.setTitle("Currently Following Courses");
+        stage2.show();
     }
 
     @FXML
@@ -51,6 +55,5 @@ public class StudentPortalController {
         studentCourseSearchController.initialize(student_id);
         stage2.setTitle("Academic Record");
         stage2.show();
-
     }
 }

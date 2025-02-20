@@ -23,6 +23,12 @@ public class StudentCurrentlyFollowingCoursesController {
     @FXML
     private TableView<?> tblCurrentlyFollowingCourses;
 
+    private String student_id;
+
+    public void initialize(String student_id) {
+        this.student_id = student_id;
+    }
+
     @FXML
     void btnDropCourseOnAction(ActionEvent event) {
 
