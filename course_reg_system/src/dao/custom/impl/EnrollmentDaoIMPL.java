@@ -51,14 +51,14 @@ public class EnrollmentDaoIMPL implements EnrollmentDao {
     }
 
     @Override
-    public EnrollmentEntity searchById(String id) throws Exception {
+    public EnrollmentEntity searchByIdInt(int id) throws Exception {
         ResultSet rst = CrudUtil.executeQuery("SELECT * FROM enrollments WHERE id = ?", id);
         if(rst.next()){
             return new EnrollmentEntity(
                 rst.getString("student_id"),
                 rst.getString("course_id"),
                 rst.getString("semester"),
-                rst.getString("grade").charAt(0),
+                rst.getString("grade") != null && !rst.getString("grade").isEmpty() ? rst.getString("grade").charAt(0) : null,
                 rst.getString("enrolled_date"),
                 rst.getInt("id")
             );
@@ -107,6 +107,11 @@ public class EnrollmentDaoIMPL implements EnrollmentDao {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public EnrollmentEntity searchById(String id) throws Exception {
+        return null;
     }
 
 }

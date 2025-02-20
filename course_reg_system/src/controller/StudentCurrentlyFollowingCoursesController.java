@@ -8,9 +8,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import service.ServiceFactory;
 import service.custom.StudentCurrentlyFollowingCoursesService;
 
@@ -18,6 +20,9 @@ public class StudentCurrentlyFollowingCoursesController {
 
     @FXML
     private Button btnDropCourse;
+
+    @FXML
+    private Label lblResponse;
 
     @FXML
     private TableColumn<EnrollmentDto, String> colCourse;
@@ -42,6 +47,26 @@ public class StudentCurrentlyFollowingCoursesController {
         colCourseID.setCellValueFactory(new PropertyValueFactory<>("course_id"));
         colCourse.setCellValueFactory(new PropertyValueFactory<>("course_name"));
         colSemester.setCellValueFactory(new PropertyValueFactory<>("semester"));
+        colSemester.setStyle("-fx-alignment: CENTER;");
+
+        tblCurrentlyFollowingCourses.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            try {
+                if(newSelection!=null && (studentCurrentlyFollowingCoursesService.canDropCourse(newSelection.getId()))){
+                    btnDropCourse.setDisable(false);
+                    lblResponse.setText("");
+                } else {
+                    btnDropCourse.setDisable(true);
+                    lblResponse.setText("You Can't Drop This Course. \nSelect another course.");
+                    lblResponse.setTextFill(Color.RED);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println(e.getMessage());
+                lblResponse.setText("Error at Checking Course Dropping Requirements. \nPlease Contact Administration.");
+                lblResponse.setTextFill(Color.RED);
+            }
+
+        });
     }
 
     public void setTable() throws Exception {

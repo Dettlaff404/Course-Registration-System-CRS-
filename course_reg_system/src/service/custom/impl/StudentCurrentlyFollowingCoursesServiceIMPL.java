@@ -1,5 +1,8 @@
 package service.custom.impl;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 import dao.DaoFactory;
@@ -31,15 +34,25 @@ public class StudentCurrentlyFollowingCoursesServiceIMPL implements StudentCurre
         }
         return enrollmentDtos;
     }
+    
     @Override
     public Boolean dropCourse(int id) throws Exception {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'dropCourse'");
     }
+
     @Override
     public Boolean canDropCourse(int id) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'canDropCourse'");
+
+        EnrollmentEntity enrollmentEntity = enrollmentDao.searchByIdInt(id);
+
+        LocalDate enrolledDate = LocalDate.parse(enrollmentEntity.getEnrolled_date(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        LocalDate currentDate = LocalDate.now();
+
+        long daysBetween = ChronoUnit.DAYS.between(enrolledDate, currentDate);
+
+        return daysBetween <= 14;
+
     }
 
     

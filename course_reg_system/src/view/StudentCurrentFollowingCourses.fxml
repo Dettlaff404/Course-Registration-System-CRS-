@@ -40,5 +40,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <Label fx:id="lblResponse" alignment="TOP_LEFT" layoutX="46.0" layoutY="405.0" prefHeight="40.0" prefWidth="369.0">
+         <font>
+            <Font name="☞Gilroy-Medium" size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
