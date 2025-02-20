@@ -50,9 +50,9 @@ public class StudentCourseSearchController {
     void btnEnrollOnAction(ActionEvent event) {
         try {
             String response = studentCourseSearchService.enrollCourse(student_id, course_id);
+            setTable();
             lblResponse.setText(response);
             if (response.contains("Enrolled Successfully")) {
-                setTable();
                 lblResponse.setTextFill(Color.GREEN);
             } else {
                 lblResponse.setTextFill(Color.RED);
@@ -80,9 +80,9 @@ public class StudentCourseSearchController {
         colSpotsLeft.setStyle("-fx-alignment: CENTER;");
 
         tblCourses.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            course_id = newSelection.getCourse_id();
             try {
                 if(newSelection!=null && studentCourseSearchService.canEnroll(student_id, newSelection.getCourse_id())){
+                    course_id = newSelection.getCourse_id();
                     btnEnroll.setDisable(false);
                     lblResponse.setText("");
                 } else {
