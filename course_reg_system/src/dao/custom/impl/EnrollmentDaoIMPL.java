@@ -51,6 +51,11 @@ public class EnrollmentDaoIMPL implements EnrollmentDao {
     }
 
     @Override
+    public boolean deletebyIntId(int id) throws Exception {
+        return CrudUtil.executeUpdate("DELETE from enrollments WHERE id = ?", id);
+    }
+
+    @Override
     public EnrollmentEntity searchByIdInt(int id) throws Exception {
         ResultSet rst = CrudUtil.executeQuery("SELECT * FROM enrollments WHERE id = ?", id);
         if(rst.next()){

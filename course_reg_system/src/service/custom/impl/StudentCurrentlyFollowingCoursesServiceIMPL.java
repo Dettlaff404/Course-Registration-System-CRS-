@@ -1,5 +1,6 @@
 package service.custom.impl;
 
+import java.sql.Connection;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -8,7 +9,9 @@ import java.util.ArrayList;
 import dao.DaoFactory;
 import dao.custom.CourseDao;
 import dao.custom.EnrollmentDao;
+import db.DBConnection;
 import dto.EnrollmentDto;
+import entity.CourseEntity;
 import entity.EnrollmentEntity;
 import service.custom.StudentCurrentlyFollowingCoursesService;
 
@@ -34,11 +37,32 @@ public class StudentCurrentlyFollowingCoursesServiceIMPL implements StudentCurre
         }
         return enrollmentDtos;
     }
-    
+
     @Override
     public Boolean dropCourse(int id) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'dropCourse'");
+        Connection connection = DBConnection.getInstance().getConnection();
+        try {
+            connection.setAutoCommit(false);
+             
+            CourseEntity courseEntity = courseDao.searchById(enrollmentDao.searchByIdInt(id).getCourse_id());
+            courseEntity.setMax_enrollcap(courseEntity.getMax_enrollcap() + 1);
+
+            if (enrollmentDao.deletebyIntId(id) && courseDao.update(courseEntity)) {
+                connection.commit();
+                return true;
+            } else {
+                connection.rollback();
+                return false;
+            }
+            
+        } catch (Exception e) {
+            connection.rollback();
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return false;
+        } finally {
+            connection.setAutoCommit(true);
+        }
     }
 
     @Override

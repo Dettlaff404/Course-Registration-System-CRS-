@@ -37,6 +37,7 @@ public class StudentCurrentlyFollowingCoursesController {
     private TableView<EnrollmentDto> tblCurrentlyFollowingCourses;
 
     private String student_id;
+    private int enrollment_id;
     private StudentCurrentlyFollowingCoursesService studentCurrentlyFollowingCoursesService = (StudentCurrentlyFollowingCoursesService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.STUDENT_CURRENTLY_FOLLOWING_COURSES);
 
     public void initialize(String student_id) throws Exception {
@@ -52,8 +53,12 @@ public class StudentCurrentlyFollowingCoursesController {
         tblCurrentlyFollowingCourses.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             try {
                 if(newSelection!=null && (studentCurrentlyFollowingCoursesService.canDropCourse(newSelection.getId()))){
+                    enrollment_id = newSelection.getId();
                     btnDropCourse.setDisable(false);
                     lblResponse.setText("");
+                } else if(newSelection == null){
+                    lblResponse.setText("");
+                    btnDropCourse.setDisable(true);
                 } else {
                     btnDropCourse.setDisable(true);
                     lblResponse.setText("You Can't Drop This Course. \nSelect another course.");
@@ -78,8 +83,15 @@ public class StudentCurrentlyFollowingCoursesController {
     }
 
     @FXML
-    void btnDropCourseOnAction(ActionEvent event) {
-
+    void btnDropCourseOnAction(ActionEvent event) throws Exception {
+        if (studentCurrentlyFollowingCoursesService.dropCourse(enrollment_id)) {
+            setTable();
+            lblResponse.setText("Successfully Dropped the course.");
+            lblResponse.setTextFill(Color.GREEN);
+        } else {
+            lblResponse.setText("Uncable to Drop Course.");
+            lblResponse.setTextFill(Color.RED);
+        }
     }
 
 }
