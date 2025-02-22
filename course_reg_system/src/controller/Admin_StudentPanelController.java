@@ -7,12 +7,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import service.ServiceFactory;
 import service.custom.Admin_StudentPanelService;
 
@@ -66,6 +70,9 @@ public class Admin_StudentPanelController {
     @FXML
     private TextField txtYear;
 
+    @FXML
+    private Label lblResponse;
+
     private Admin_StudentPanelService admin_StudentPanelService = (Admin_StudentPanelService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.ADMIN_STUDENTPANEL);
 
     public void initialize() throws Exception {
@@ -80,6 +87,18 @@ public class Admin_StudentPanelController {
         colDob.setStyle("-fx-alignment: CENTER;");
         colContact.setStyle("-fx-alignment: CENTER;");
         colFacultyId.setStyle("-fx-alignment: CENTER;");
+        colStudentId.setStyle("-fx-alignment: CENTER;");
+
+        tblStudentDetail.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                setFeilds(newSelection);
+                btnAcademicReport.setDisable(false);
+            } else {
+                clearFields();
+                btnAcademicReport.setDisable(true);
+            }
+
+        });
     }
 
     public void setTable() throws Exception {
@@ -90,9 +109,32 @@ public class Admin_StudentPanelController {
         tblStudentDetail.setItems(observableArrayList);
     }
 
-    @FXML
-    void btnAcacemicReportOnAction(ActionEvent event) {
+    public void clearFields() {
+        txtStudentId.setText(null);
+        txtStudentName.setText(null);
+        txtDoB.setText(null);
+        txtYear.setText(null);
+        txtProgramId.setText(null);
+        txtPassword.setText(null);
+    }
 
+    public void setFeilds(StudentDto studentDto) {
+        txtStudentId.setText(studentDto.getStudent_id());
+        txtStudentName.setText(studentDto.getStudent_name());
+        txtDoB.setText(studentDto.getDob());
+        txtYear.setText(studentDto.getYear());
+        txtProgramId.setText(studentDto.getProgram_id());
+    }
+
+    @FXML
+    void btnAcacemicReportOnAction(ActionEvent event) throws Exception {
+        Stage stage2 = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/AcademicRecord.fxml"));
+        stage2.setScene(new Scene(loader.load()));
+        AcademicRecordController academicRecordController = loader.getController();
+        academicRecordController.initialize(txtStudentId.getText());
+        stage2.setTitle("Academic Record");
+        stage2.show();
     }
 
     @FXML
