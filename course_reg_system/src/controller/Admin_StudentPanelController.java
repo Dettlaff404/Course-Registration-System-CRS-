@@ -57,6 +57,9 @@ public class Admin_StudentPanelController {
     private TextField txtDoB;
 
     @FXML
+    private TextField txtContact;
+
+    @FXML
     private PasswordField txtPassword;
 
     @FXML
@@ -118,6 +121,7 @@ public class Admin_StudentPanelController {
         txtYear.setText(null);
         txtProgramId.setText(null);
         txtPassword.setText(null);
+        txtContact.setText(null);
     }
 
     public void setFeilds(StudentDto studentDto) {
@@ -126,6 +130,7 @@ public class Admin_StudentPanelController {
         txtDoB.setText(studentDto.getDob());
         txtYear.setText(studentDto.getYear());
         txtProgramId.setText(studentDto.getProgram_id());
+        txtContact.setText(studentDto.getContact());
     }
 
     @FXML
@@ -165,7 +170,28 @@ public class Admin_StudentPanelController {
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-
+        StudentDto studentDto = new StudentDto(
+                txtStudentId.getText(),
+                txtStudentName.getText(),
+                txtDoB.getText(),
+                txtYear.getText(),
+                txtContact.getText(),
+                txtProgramId.getText()
+        );
+        String password = (txtPassword.getText() == null || txtPassword.getText().equals("")) ? "123456" : txtPassword.getText();
+        try {
+            if (admin_StudentPanelService.saveStudent(studentDto, password)){
+                setTable();
+                clearFields();
+                lblResponse.setText("Saved Student Data Successfully.");
+                lblResponse.setTextFill(Color.GREEN);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            lblResponse.setText("Error at Saving Student Data. \nPlease Check Data and Try Again.");
+            lblResponse.setTextFill(Color.RED);
+        }
     }
 
 }

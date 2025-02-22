@@ -14,8 +14,28 @@ public class Admin_StudentPanelServiceIMPL implements Admin_StudentPanelService 
 
     @Override
     public boolean saveStudent(StudentDto studentDto, String password) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveStudent'");
+        StudentEntity studentEntity = studentDao.searchById(studentDto.getStudent_id());
+        if (studentEntity == null) {
+            return studentDao.save(new StudentEntity(
+                    studentDto.getStudent_id(),
+                    studentDto.getStudent_name(),
+                    studentDto.getDob(),
+                    studentDto.getYear(),
+                    studentDto.getContact(),
+                    password,
+                    studentDto.getProgram_id()
+            ));
+        } else {
+            return studentDao.update(new StudentEntity(
+                    studentDto.getStudent_id(),
+                    studentDto.getStudent_name(),
+                    studentDto.getDob(),
+                    studentDto.getYear(),
+                    studentDto.getContact(),
+                    password.equals("123456") ? studentEntity.getPassword() : password,
+                    studentDto.getProgram_id()
+            ));
+        }
     }
 
     @Override
