@@ -31,13 +31,15 @@ public class ServiceFactory {
                 return new StudentCurrentlyFollowingCoursesServiceIMPL();
             case ADMIN_STUDENTPANEL:
                 return new Admin_StudentPanelServiceIMPL();
+            case ADMIN_COURSEPANEL:
+                return new Admin_StudentPanelServiceIMPL();
             default:
                 return null;
         }
     }
 
     public enum ServiceType {
-        LOGIN, ACADEMIC_RECORD, STUDENT_COURSE_SEARCH, STUDENT_CURRENTLY_FOLLOWING_COURSES, ADMIN_STUDENTPANEL,
+        LOGIN, ACADEMIC_RECORD, STUDENT_COURSE_SEARCH, STUDENT_CURRENTLY_FOLLOWING_COURSES, ADMIN_STUDENTPANEL, ADMIN_COURSEPANEL
     }
 
 }
