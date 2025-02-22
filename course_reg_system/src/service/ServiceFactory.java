@@ -1,6 +1,7 @@
 package service;
 
 import service.custom.impl.AcademicRecordServiceIMPL;
+import service.custom.impl.Admin_StudentPanelServiceIMPL;
 import service.custom.impl.LogInServiceIMPL;
 import service.custom.impl.StudentCourseSearchIMPL;
 import service.custom.impl.StudentCurrentlyFollowingCoursesServiceIMPL;
@@ -28,13 +29,15 @@ public class ServiceFactory {
                 return new StudentCourseSearchIMPL();
             case STUDENT_CURRENTLY_FOLLOWING_COURSES:
                 return new StudentCurrentlyFollowingCoursesServiceIMPL();
+            case ADMIN_STUDENTPANEL:
+                return new Admin_StudentPanelServiceIMPL();
             default:
                 return null;
         }
     }
 
     public enum ServiceType {
-        LOGIN, ACADEMIC_RECORD, STUDENT_COURSE_SEARCH, STUDENT_CURRENTLY_FOLLOWING_COURSES,
+        LOGIN, ACADEMIC_RECORD, STUDENT_COURSE_SEARCH, STUDENT_CURRENTLY_FOLLOWING_COURSES, ADMIN_STUDENTPANEL,
     }
 
 }

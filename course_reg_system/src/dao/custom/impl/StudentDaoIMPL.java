@@ -45,7 +45,7 @@ public class StudentDaoIMPL implements StudentDao {
                 rst.getString("student_id"), 
                 rst.getString("name"), 
                 rst.getString("dob"), 
-                rst.getString("year"), 
+                rst.getString("year").split("-")[0], 
                 rst.getString("contact"), 
                 rst.getString("password"), 
                 rst.getString("program_id"));       
@@ -62,7 +62,7 @@ public class StudentDaoIMPL implements StudentDao {
                 rst.getString("student_id"), 
                 rst.getString("name"), 
                 rst.getString("dob"), 
-                rst.getString("year"), 
+                rst.getString("year").split("-")[0], 
                 rst.getString("contact"), 
                 rst.getString("password"), 
                 rst.getString("program_id")));        
