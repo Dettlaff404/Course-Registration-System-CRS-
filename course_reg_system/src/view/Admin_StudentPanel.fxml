@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="789.0" prefWidth="893.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Admin_StudentPanelController">
    <children>
       <Label alignment="CENTER" layoutX="207.0" layoutY="14.0" prefHeight="44.0" prefWidth="479.0" text="Students Details Panel" textFill="#ff0505">
@@ -105,6 +104,9 @@
             <TableColumn fx:id="colContact" prefWidth="142.0" text="Contact" />
             <TableColumn fx:id="colFacultyId" prefWidth="97.0" text="Faculty ID" />
         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
       <Button fx:id="btnAcademicReport" disable="true" layoutX="611.0" layoutY="701.0" mnemonicParsing="false" onAction="#btnAcacemicReportOnAction" prefHeight="40.0" prefWidth="236.0" style="-fx-background-color: Green;" text="Academic Report" textAlignment="CENTER" textFill="WHITE">
          <font>

@@ -41,7 +41,7 @@ public class AcademicRecordServiceIMPL implements AcademicRecordService {
                 student_id,
                 studentDao.searchById(student_id).getStudent_name(),
                 studentDao.searchById(student_id).getDob(),
-                studentDao.searchById(student_id).getYear().toString().split("-")[0],
+                studentDao.searchById(student_id).getYear(),
                 studentDao.searchById(student_id).getContact(),
                 studentDao.searchById(student_id).getProgram_id()
         );
