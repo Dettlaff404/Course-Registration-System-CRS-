@@ -20,8 +20,7 @@ public class Admin_StudentPanelServiceIMPL implements Admin_StudentPanelService 
 
     @Override
     public boolean deleteStudent(String student_id) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteStudent'");
+        return studentDao.delete(student_id);
     }
 
     @Override

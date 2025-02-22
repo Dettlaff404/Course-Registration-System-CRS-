@@ -16,6 +16,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import service.ServiceFactory;
 import service.custom.Admin_StudentPanelService;
@@ -93,6 +94,7 @@ public class Admin_StudentPanelController {
             if (newSelection != null) {
                 setFeilds(newSelection);
                 btnAcademicReport.setDisable(false);
+                lblResponse.setText(null);
             } else {
                 clearFields();
                 btnAcademicReport.setDisable(true);
@@ -127,19 +129,38 @@ public class Admin_StudentPanelController {
     }
 
     @FXML
-    void btnAcacemicReportOnAction(ActionEvent event) throws Exception {
-        Stage stage2 = new Stage();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/AcademicRecord.fxml"));
-        stage2.setScene(new Scene(loader.load()));
-        AcademicRecordController academicRecordController = loader.getController();
-        academicRecordController.initialize(txtStudentId.getText());
-        stage2.setTitle("Academic Record");
-        stage2.show();
+    void btnAcacemicReportOnAction(ActionEvent event){
+        try{
+            Stage stage2 = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/AcademicRecord.fxml"));
+            stage2.setScene(new Scene(loader.load()));
+            AcademicRecordController academicRecordController = loader.getController();
+            academicRecordController.initialize(txtStudentId.getText());
+            stage2.setTitle("Academic Record");
+            stage2.show();
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            lblResponse.setText("Error at Getting Academic Record. \nPlease Contact Administration.");
+            lblResponse.setTextFill(Color.RED);
+        }
     }
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
-
+        try {
+            if (admin_StudentPanelService.deleteStudent(txtStudentId.getText())) {
+                setTable();
+                clearFields();
+                lblResponse.setText("Deleted Student Data Successfully.");
+                lblResponse.setTextFill(Color.GREEN);
+            } 
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            lblResponse.setText("Error at Deleting Student Data. \nPlease Check Student ID and Try Again.");
+            lblResponse.setTextFill(Color.RED);
+        }
     }
 
     @FXML
