@@ -31,14 +31,30 @@ public class Admin_CoursePanelServiceIMPL implements Admin_CoursePanelService{
 
     @Override
     public boolean saveCourse(CourseDto courseDto) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveCourse'");
+        CourseEntity courseEntity = courseDao.searchById(courseDto.getCourse_id());
+        if (courseEntity == null) {
+            return courseDao.save(new CourseEntity(
+                    courseDto.getCourse_id(),
+                    courseDto.getTitle(),
+                    courseDto.getCred_hrs(),
+                    courseDto.getMax_enrollcap(),
+                    courseDto.getDepartment_id()
+            ));
+            
+        } else {
+            return courseDao.update(new CourseEntity(
+                    courseDto.getCourse_id(),
+                    courseDto.getTitle(),
+                    courseDto.getCred_hrs(),
+                    courseDto.getMax_enrollcap(),
+                    courseDto.getDepartment_id()
+            ));
+        }
     }
 
     @Override
     public boolean deleteCourse(String courseId) throws Exception {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteCourse'");
+        return courseDao.delete(courseId);
     }
 
 }

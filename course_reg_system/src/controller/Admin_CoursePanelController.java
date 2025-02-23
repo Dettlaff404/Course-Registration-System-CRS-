@@ -13,6 +13,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 import service.ServiceFactory;
 import service.custom.Admin_CoursePanelService;
 
@@ -80,12 +81,45 @@ public class Admin_CoursePanelController {
 
     @FXML
     void btnDeleteOnAction(ActionEvent event) {
+        try {
+            if (admin_CoursePanelService.deleteCourse(txtCourseId.getText())) {
+                setTable();
+                clearTextFields();
+                lblResponse.setText("Deleted Course Data Successfully.");
+                lblResponse.setTextFill(Color.GREEN);
+            } 
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            lblResponse.setText("Error at Deleting Course Data. \nPlease Check Course ID and Try Again.");
+            lblResponse.setTextFill(Color.RED);
+        }
 
     }
 
     @FXML
     void btnSaveOnAction(ActionEvent event) {
-
+        CourseDto courseDto = new CourseDto(
+                txtCourseId.getText(),
+                txtTitle.getText(),
+                Integer.parseInt(txtCredHrs.getText()),
+                Integer.parseInt(txtEnrollCap.getText()),
+                txtDepartmentId.getText()
+                
+        );
+        try {
+            if (admin_CoursePanelService.saveCourse(courseDto)) {
+                setTable();
+                clearTextFields();
+                lblResponse.setText("Saved Course Data Successfully.");
+                lblResponse.setTextFill(Color.GREEN);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            lblResponse.setText("Error at Saving Course Data. \nPlease Check Data and Try Again.");
+            lblResponse.setTextFill(Color.RED);
+        }
     }
 
     public void initialize() throws Exception {
@@ -106,6 +140,7 @@ public class Admin_CoursePanelController {
                 setTextFields(newSelection);
                 btnCourseReport.setDisable(false);
                 btnGradeCourse.setDisable(false);
+                lblResponse.setText(null);
             } else {
                 clearTextFields();
                 btnCourseReport.setDisable(true);
