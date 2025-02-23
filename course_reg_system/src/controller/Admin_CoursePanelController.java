@@ -1,6 +1,10 @@
 package controller;
 
+import java.util.ArrayList;
+
 import dto.CourseDto;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,17 +12,20 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import service.ServiceFactory;
+import service.custom.Admin_CoursePanelService;
 
 public class Admin_CoursePanelController {
 
     @FXML
-    private Button btnAcademicReport;
-
-    @FXML
-    private Button btnAcademicReport1;
+    private Button btnCourseReport;
 
     @FXML
     private Button btnDelete;
+
+    @FXML
+    private Button btnGradeCourse;
 
     @FXML
     private Button btnSave;
@@ -59,8 +66,15 @@ public class Admin_CoursePanelController {
     @FXML
     private TextField txtTitle;
 
+    private Admin_CoursePanelService admin_CoursePanelService = (Admin_CoursePanelService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.ADMIN_COURSEPANEL);
+
     @FXML
-    void btnAcacemicReportOnAction(ActionEvent event) {
+    void btnCourseReportOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnGradeCourseOnAction(ActionEvent event) {
 
     }
 
@@ -72,6 +86,56 @@ public class Admin_CoursePanelController {
     @FXML
     void btnSaveOnAction(ActionEvent event) {
 
+    }
+
+    public void initialize() throws Exception {
+        setTable();
+        colId.setCellValueFactory(new PropertyValueFactory<>("course_id"));
+        colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+        colCredHrs.setCellValueFactory(new PropertyValueFactory<>("cred_hrs"));
+        colDepartmentId.setCellValueFactory(new PropertyValueFactory<>("department_id"));
+        colEnrollCap.setCellValueFactory(new PropertyValueFactory<>("max_enrollcap"));
+        colCredHrs.setStyle("-fx-alignment: CENTER;");
+        colDepartmentId.setStyle("-fx-alignment: CENTER;");
+        colEnrollCap.setStyle("-fx-alignment: CENTER;");
+        btnCourseReport.setDisable(true);
+        btnGradeCourse.setDisable(true);
+
+        tblCourses.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                setTextFields(newSelection);
+                btnCourseReport.setDisable(false);
+                btnGradeCourse.setDisable(false);
+            } else {
+                clearTextFields();
+                btnCourseReport.setDisable(true);
+                btnGradeCourse.setDisable(true);
+            }
+        });
+    }
+
+    public void setTable() throws Exception {
+        ArrayList<CourseDto> all = admin_CoursePanelService.getAllCourses();  
+        
+        ObservableList<CourseDto> observableArrayList = FXCollections.observableArrayList();
+        observableArrayList.addAll(all);
+        tblCourses.setItems(observableArrayList);
+    }
+
+    public void clearTextFields(){
+        txtCourseId.clear();
+        txtCredHrs.clear();
+        txtDepartmentId.clear();
+        txtEnrollCap.clear();
+        txtTitle.clear();
+    }
+
+    public void setTextFields(CourseDto courseDto){
+        txtCourseId.setText(courseDto.getCourse_id());
+        txtCredHrs.setText(String.valueOf(courseDto.getCred_hrs()));
+        txtDepartmentId.setText(courseDto.getDepartment_id());
+        txtEnrollCap.setText(String.valueOf(courseDto.getMax_enrollcap()));
+        txtTitle.setText(courseDto.getTitle());
     }
 
 }

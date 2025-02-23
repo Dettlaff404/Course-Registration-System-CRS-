@@ -96,7 +96,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="btnAcademicReport" disable="true" layoutX="240.0" layoutY="214.0" mnemonicParsing="false" onAction="#btnAcacemicReportOnAction" prefHeight="40.0" prefWidth="192.0" style="-fx-background-color: orange;" text="Course Report" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="btnCourseReport" disable="true" layoutX="240.0" layoutY="214.0" mnemonicParsing="false" onAction="#btnCourseReportOnAction" prefHeight="40.0" prefWidth="192.0" style="-fx-background-color: orange;" text="Course Report" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="☞Gilroy-Bold" size="22.0" />
          </font>
@@ -104,7 +104,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="btnAcademicReport1" disable="true" layoutX="51.0" layoutY="214.0" mnemonicParsing="false" onAction="#btnAcacemicReportOnAction" prefHeight="40.0" prefWidth="179.0" style="-fx-background-color: orange;" text="Grade Course" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="btnGradeCourse" disable="true" layoutX="51.0" layoutY="214.0" mnemonicParsing="false" onAction="#btnGradeCourseOnAction" prefHeight="40.0" prefWidth="179.0" style="-fx-background-color: orange;" text="Grade Course" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="☞Gilroy-Bold" size="22.0" />
          </font>

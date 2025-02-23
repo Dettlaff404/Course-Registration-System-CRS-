@@ -81,6 +81,7 @@ public class Admin_StudentPanelController {
 
     public void initialize() throws Exception {
         setTable();
+        btnAcademicReport.setDisable(true);
         colStudentId.setCellValueFactory(new PropertyValueFactory<>("student_id"));
         colStudentName.setCellValueFactory(new PropertyValueFactory<>("student_name"));
         colContact.setCellValueFactory(new PropertyValueFactory<>("contact"));
@@ -146,7 +147,7 @@ public class Admin_StudentPanelController {
         }catch(Exception e){
             e.printStackTrace();
             System.out.println(e.getMessage());
-            lblResponse.setText("Error at Getting Academic Record. \nPlease Contact Administration.");
+            lblResponse.setText("Error at Getting Academic Record. \nPlease Check Student ID or Contact Administration.");
             lblResponse.setTextFill(Color.RED);
         }
     }

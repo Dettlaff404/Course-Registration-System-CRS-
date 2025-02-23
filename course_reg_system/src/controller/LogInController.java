@@ -132,6 +132,7 @@ public class LogInController {
     public void passwordSetVisible(){
         lblEnterPassword.setVisible(true);
         txtPassword.setVisible(true);
+        txtPassword.requestFocus();
         btnLogIn.setVisible(true);
     }
 

@@ -9,8 +9,11 @@ import javafx.stage.Stage;
 public class AdminPortalController {
 
     @FXML
-    void btnCoursesOnAction(ActionEvent event) {
-
+    void btnCoursesOnAction(ActionEvent event) throws Exception {
+        Stage stage = new Stage();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("../view/Admin_CoursePanel.fxml"))));
+        stage.setTitle("Course Management Panel");
+        stage.show();
     }
 
     @FXML

@@ -1,6 +1,7 @@
 package service;
 
 import service.custom.impl.AcademicRecordServiceIMPL;
+import service.custom.impl.Admin_CoursePanelServiceIMPL;
 import service.custom.impl.Admin_StudentPanelServiceIMPL;
 import service.custom.impl.LogInServiceIMPL;
 import service.custom.impl.StudentCourseSearchIMPL;
@@ -32,7 +33,7 @@ public class ServiceFactory {
             case ADMIN_STUDENTPANEL:
                 return new Admin_StudentPanelServiceIMPL();
             case ADMIN_COURSEPANEL:
-                return new Admin_StudentPanelServiceIMPL();
+                return new Admin_CoursePanelServiceIMPL();
             default:
                 return null;
         }
