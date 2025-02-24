@@ -1,11 +1,13 @@
 package service.custom.impl;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 
 import dao.DaoFactory;
 import dao.custom.CourseDao;
 import dao.custom.EnrollmentDao;
 import dao.custom.StudentDao;
+import db.DBConnection;
 import dto.CourseDto;
 import dto.EnrollmentDto;
 import entity.CourseEntity;
@@ -80,6 +82,41 @@ public class Admin_CoursePanelServiceIMPL implements Admin_CoursePanelService{
             ));
         }
         return enrollmentDtos;
+    }
+
+    @Override
+    public boolean gradeEnrollment(Integer enrollmentId, Character grade) throws Exception {
+        EnrollmentEntity enrollmentEntity = enrollmentDao.searchById(Integer.toString(enrollmentId)); 
+        enrollmentEntity.setGrade(grade);
+
+        return enrollmentDao.update(enrollmentEntity);
+    }
+
+    @Override
+    public boolean deleteEnrollment(Integer enrollmentId) throws Exception {
+        Connection connection = DBConnection.getInstance().getConnection();
+        try {
+            connection.setAutoCommit(false);
+             
+            CourseEntity courseEntity = courseDao.searchById(enrollmentDao.searchById(Integer.toString(enrollmentId)).getCourse_id());
+            courseEntity.setMax_enrollcap(courseEntity.getMax_enrollcap() + 1);
+
+            if (enrollmentDao.delete(Integer.toString(enrollmentId)) && courseDao.update(courseEntity)) {
+                connection.commit();
+                return true;
+            } else {
+                connection.rollback();
+                return false;
+            }
+            
+        } catch (Exception e) {
+            connection.rollback();
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+            return false;
+        } finally {
+            connection.setAutoCommit(true);
+        }
     }
 
 }
