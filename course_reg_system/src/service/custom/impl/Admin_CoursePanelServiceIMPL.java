@@ -4,13 +4,19 @@ import java.util.ArrayList;
 
 import dao.DaoFactory;
 import dao.custom.CourseDao;
+import dao.custom.EnrollmentDao;
+import dao.custom.StudentDao;
 import dto.CourseDto;
+import dto.EnrollmentDto;
 import entity.CourseEntity;
+import entity.EnrollmentEntity;
 import service.custom.Admin_CoursePanelService;
 
 public class Admin_CoursePanelServiceIMPL implements Admin_CoursePanelService{
 
     private CourseDao courseDao = (CourseDao) DaoFactory.getInstance().getDao(DaoFactory.DaoTypes.COURSE);
+    private EnrollmentDao enrollmentDao = (EnrollmentDao) DaoFactory.getInstance().getDao(DaoFactory.DaoTypes.ENROLLMENT);
+    private StudentDao studentDao = (StudentDao) DaoFactory.getInstance().getDao(DaoFactory.DaoTypes.STUDENT);
 
     @Override
     public ArrayList<CourseDto> getAllCourses() throws Exception {
@@ -55,6 +61,25 @@ public class Admin_CoursePanelServiceIMPL implements Admin_CoursePanelService{
     @Override
     public boolean deleteCourse(String courseId) throws Exception {
         return courseDao.delete(courseId);
+    }
+
+    @Override
+    public ArrayList<EnrollmentDto> getCoursesToBeGraded(String courseId) throws Exception {
+        ArrayList<EnrollmentEntity> enrollmentEntities = enrollmentDao.searchByCourseIdCurrentlyFollowing(courseId);
+        ArrayList<EnrollmentDto> enrollmentDtos = new ArrayList<>();
+
+        for (EnrollmentEntity enrollmentEntity : enrollmentEntities) {
+            enrollmentDtos.add(new EnrollmentDto(
+                enrollmentEntity.getStudent_id(),
+                studentDao.searchById(enrollmentEntity.getStudent_id()).getStudent_name(),
+                enrollmentEntity.getCourse_id(),
+                courseDao.searchById(enrollmentEntity.getCourse_id()).getTitle(),
+                enrollmentEntity.getSemester(),
+                enrollmentEntity.getGrade(),
+                enrollmentEntity.getId()
+            ));
+        }
+        return enrollmentDtos;
     }
 
 }

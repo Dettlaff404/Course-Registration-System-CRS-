@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import dao.DaoFactory;
 import dao.custom.CourseDao;
 import dao.custom.EnrollmentDao;
+import dao.custom.StudentDao;
 import db.DBConnection;
 import dto.EnrollmentDto;
 import entity.CourseEntity;
@@ -19,6 +20,7 @@ public class StudentCurrentlyFollowingCoursesServiceIMPL implements StudentCurre
 
     private EnrollmentDao enrollmentDao = (EnrollmentDao) DaoFactory.getInstance().getDao(DaoFactory.DaoTypes.ENROLLMENT);
     private CourseDao courseDao = (CourseDao) DaoFactory.getInstance().getDao(DaoFactory.DaoTypes.COURSE);
+    private StudentDao studentDao = (StudentDao) DaoFactory.getInstance().getDao(DaoFactory.DaoTypes.STUDENT);
     
     @Override
     public ArrayList<EnrollmentDto> searchCurrentlyFollowingCourses(String student_id) throws Exception {
@@ -28,6 +30,7 @@ public class StudentCurrentlyFollowingCoursesServiceIMPL implements StudentCurre
         for (EnrollmentEntity enrollmentEntity : enrollmentEntities) {
             enrollmentDtos.add(new EnrollmentDto(
                 enrollmentEntity.getStudent_id(),
+                studentDao.searchById(enrollmentEntity.getStudent_id()).getStudent_name(),
                 enrollmentEntity.getCourse_id(),
                 courseDao.searchById(enrollmentEntity.getCourse_id()).getTitle(),
                 enrollmentEntity.getSemester(),
@@ -44,10 +47,10 @@ public class StudentCurrentlyFollowingCoursesServiceIMPL implements StudentCurre
         try {
             connection.setAutoCommit(false);
              
-            CourseEntity courseEntity = courseDao.searchById(enrollmentDao.searchByIdInt(id).getCourse_id());
+            CourseEntity courseEntity = courseDao.searchById(enrollmentDao.searchById(Integer.toString(id)).getCourse_id());
             courseEntity.setMax_enrollcap(courseEntity.getMax_enrollcap() + 1);
 
-            if (enrollmentDao.deletebyIntId(id) && courseDao.update(courseEntity)) {
+            if (enrollmentDao.delete(Integer.toString(id)) && courseDao.update(courseEntity)) {
                 connection.commit();
                 return true;
             } else {
@@ -68,7 +71,7 @@ public class StudentCurrentlyFollowingCoursesServiceIMPL implements StudentCurre
     @Override
     public Boolean canDropCourse(int id) throws Exception {
 
-        EnrollmentEntity enrollmentEntity = enrollmentDao.searchByIdInt(id);
+        EnrollmentEntity enrollmentEntity = enrollmentDao.searchById(Integer.toString(id));
 
         LocalDate enrolledDate = LocalDate.parse(enrollmentEntity.getEnrolled_date(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         LocalDate currentDate = LocalDate.now();

@@ -1,12 +1,14 @@
 package controller;
 
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 import dto.CourseDto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -14,6 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import service.ServiceFactory;
 import service.custom.Admin_CoursePanelService;
 
@@ -68,6 +71,7 @@ public class Admin_CoursePanelController {
     private TextField txtTitle;
 
     private Admin_CoursePanelService admin_CoursePanelService = (Admin_CoursePanelService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.ADMIN_COURSEPANEL);
+    private String courseId;
 
     @FXML
     void btnCourseReportOnAction(ActionEvent event) {
@@ -75,8 +79,14 @@ public class Admin_CoursePanelController {
     }
 
     @FXML
-    void btnGradeCourseOnAction(ActionEvent event) {
-
+    void btnGradeCourseOnAction(ActionEvent event) throws Exception {
+        Stage stage2 = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Admin_GradeCourse.fxml"));
+        stage2.setScene(new Scene(loader.load()));
+        Admin_GradeCourseController admin_GradeCourseController = loader.getController();
+        admin_GradeCourseController.initialize(courseId);
+        stage2.setTitle("Currently Following Courses");
+        stage2.show();
     }
 
     @FXML
@@ -138,6 +148,7 @@ public class Admin_CoursePanelController {
         tblCourses.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 setTextFields(newSelection);
+                this.courseId = newSelection.getCourse_id();
                 btnCourseReport.setDisable(false);
                 btnGradeCourse.setDisable(false);
                 lblResponse.setText(null);
