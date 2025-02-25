@@ -64,7 +64,7 @@ public class Admin_GradeCourseController {
     private TextField txtGrade;
 
     private Integer id;
-    private Character[] grades = {'A', 'B', 'C', 'P', 'F'};
+    private Character[] grades = {'A', 'B', 'C', 'F', 'P'};
     private String course_id;
     private Admin_CoursePanelService admin_CoursePanelService = (Admin_CoursePanelService) ServiceFactory.getInstance().getService(ServiceFactory.ServiceType.ADMIN_COURSEPANEL);
 
@@ -88,7 +88,7 @@ public class Admin_GradeCourseController {
     @FXML
     void btnSaveOnAction(ActionEvent event) {
         try {
-            if (Arrays.binarySearch(grades, txtGrade.getText().charAt(0)) >= 0 && admin_CoursePanelService.gradeEnrollment(id, txtGrade.getText().charAt(0))) {
+            if (Arrays.binarySearch(grades, Character.toUpperCase(txtGrade.getText().charAt(0))) >= 0 && admin_CoursePanelService.gradeEnrollment(id, Character.toUpperCase(txtGrade.getText().charAt(0)))){
                 setTable();
                 clearData();
                 lblResponse.setText("Graded Successfully.");
