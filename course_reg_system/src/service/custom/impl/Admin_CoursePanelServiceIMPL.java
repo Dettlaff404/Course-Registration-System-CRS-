@@ -66,7 +66,7 @@ public class Admin_CoursePanelServiceIMPL implements Admin_CoursePanelService{
     }
 
     @Override
-    public ArrayList<EnrollmentDto> getCoursesToBeGraded(String courseId) throws Exception {
+    public ArrayList<EnrollmentDto> getEnrollmentsToBeGraded(String courseId) throws Exception {
         ArrayList<EnrollmentEntity> enrollmentEntities = enrollmentDao.searchByCourseIdCurrentlyFollowing(courseId);
         ArrayList<EnrollmentDto> enrollmentDtos = new ArrayList<>();
 
@@ -117,6 +117,37 @@ public class Admin_CoursePanelServiceIMPL implements Admin_CoursePanelService{
         } finally {
             connection.setAutoCommit(true);
         }
+    }
+
+    @Override
+    public ArrayList<EnrollmentDto> getCompletedEnrollments(String courseId) throws Exception {
+        ArrayList<EnrollmentEntity> enrollmentEntities = enrollmentDao.searchByCourseIdCompleted(courseId);
+        ArrayList<EnrollmentDto> enrollmentDtos = new ArrayList<>();
+
+        for (EnrollmentEntity enrollmentEntity : enrollmentEntities) {
+            enrollmentDtos.add(new EnrollmentDto(
+                enrollmentEntity.getStudent_id(),
+                studentDao.searchById(enrollmentEntity.getStudent_id()).getStudent_name(),
+                enrollmentEntity.getCourse_id(),
+                courseDao.searchById(enrollmentEntity.getCourse_id()).getTitle(),
+                enrollmentEntity.getSemester(),
+                enrollmentEntity.getGrade(),
+                enrollmentEntity.getId()
+            ));
+        }
+        return enrollmentDtos;
+    }
+
+    @Override
+    public CourseDto searchCourse(String courseId) throws Exception {
+        CourseEntity courseEntity = courseDao.searchById(courseId);
+        return new CourseDto(
+            courseId,
+            courseEntity.getTitle(),
+            courseEntity.getCred_hrs(),
+            courseEntity.getMax_enrollcap(),
+            courseEntity.getDepartment_id()
+        );
     }
 
 }

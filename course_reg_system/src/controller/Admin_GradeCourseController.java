@@ -114,6 +114,9 @@ public class Admin_GradeCourseController {
         colStudentId.setCellValueFactory(new PropertyValueFactory<>("student_id"));
         colStudentName.setCellValueFactory(new PropertyValueFactory<>("student_name"));
         colSemester.setCellValueFactory(new PropertyValueFactory<>("semester"));
+        colEnrollmentId.setStyle("-fx-alignment: CENTER;");
+        colStudentId.setStyle("-fx-alignment: CENTER;");
+        colSemester.setStyle("-fx-alignment: CENTER;");
 
         tblGradeCourse.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
@@ -125,7 +128,7 @@ public class Admin_GradeCourseController {
     }
 
     public void setTable() throws Exception {
-        ArrayList<EnrollmentDto> coursesToBeGrade = admin_CoursePanelService.getCoursesToBeGraded(course_id);
+        ArrayList<EnrollmentDto> coursesToBeGrade = admin_CoursePanelService.getEnrollmentsToBeGraded(course_id);
 
         ObservableList<EnrollmentDto> observableArrayList = FXCollections.observableArrayList();
         observableArrayList.addAll(coursesToBeGrade);

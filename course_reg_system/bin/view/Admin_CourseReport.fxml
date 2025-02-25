@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="844.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Admin_CourseReportController">
+   <children>
+      <Label alignment="CENTER" layoutX="183.0" layoutY="14.0" prefHeight="44.0" prefWidth="479.0" text="Course Report Panel" textFill="#ff0505">
+         <font>
+            <Font name="BunkenTechSansPro-Bold" size="34.0" />
+         </font>
+      </Label>
+      <Label layoutX="524.0" layoutY="69.0" prefHeight="40.0" prefWidth="110.0" text="Course ID : ">
+         <font>
+            <Font name="Gotham-Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCourseId" layoutX="631.0" layoutY="69.0" prefHeight="40.0" prefWidth="94.0" text="ART101">
+         <font>
+            <Font name="Gotham-MediumItalic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="75.0" layoutY="69.0" prefHeight="40.0" prefWidth="143.0" text="Course Name : ">
+         <font>
+            <Font name="Gotham-Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblCourseName" layoutX="218.0" layoutY="69.0" prefHeight="40.0" prefWidth="301.0" text="Fundamentals of IT">
+         <font>
+            <Font name="Gotham-MediumItalic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="382.0" layoutY="109.0" prefHeight="40.0" prefWidth="249.0" text="Enrollment Capacity Left : ">
+         <font>
+            <Font name="Gotham-Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblEnrollmentCap" layoutX="631.0" layoutY="109.0" prefHeight="40.0" prefWidth="94.0" text="ART101">
+         <font>
+            <Font name="Gotham-MediumItalic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="75.0" layoutY="109.0" prefHeight="40.0" prefWidth="157.0" text="Department ID : ">
+         <font>
+            <Font name="Gotham-Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDepartmentId" layoutX="232.0" layoutY="109.0" prefHeight="40.0" prefWidth="94.0" text="ART101">
+         <font>
+            <Font name="Gotham-MediumItalic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="75.0" layoutY="149.0" prefHeight="40.0" prefWidth="261.0" text="Total Course Completions : ">
+         <font>
+            <Font name="Gotham-Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblTotalGradedStudents" layoutX="335.0" layoutY="149.0" prefHeight="40.0" prefWidth="94.0" text="ART101">
+         <font>
+            <Font name="Gotham-MediumItalic" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="451.0" layoutY="149.0" prefHeight="40.0" prefWidth="180.0" text="Course Pass Rate : ">
+         <font>
+            <Font name="Gotham-Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPassRate" layoutX="631.0" layoutY="149.0" prefHeight="40.0" prefWidth="94.0" text="ART101">
+         <font>
+            <Font name="Gotham-MediumItalic" size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblGradedEnrollments" layoutX="52.0" layoutY="201.0" prefHeight="416.0" prefWidth="742.0">
+        <columns>
+            <TableColumn fx:id="colEnrollmentId" prefWidth="95.0" text="Enrollment ID" />
+          <TableColumn fx:id="colStudentId" prefWidth="112.0" text="Student ID" />
+          <TableColumn fx:id="colStudentName" prefWidth="348.0" text="Student Name" />
+            <TableColumn fx:id="colGrade" prefWidth="75.0" text="Grade" />
+            <TableColumn fx:id="colSemester" prefWidth="94.0" text="Semester" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <ImageView fitHeight="69.0" fitWidth="73.0" layoutX="761.0" layoutY="630.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 80%;">
+         <image>
+            <Image url="@../img/ijse@1x.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

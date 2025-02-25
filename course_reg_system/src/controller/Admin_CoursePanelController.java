@@ -1,6 +1,5 @@
 package controller;
 
-
 import java.util.ArrayList;
 import dto.CourseDto;
 import javafx.collections.FXCollections;
@@ -74,7 +73,14 @@ public class Admin_CoursePanelController {
     private String courseId;
 
     @FXML
-    void btnCourseReportOnAction(ActionEvent event) {
+    void btnCourseReportOnAction(ActionEvent event) throws Exception {
+        Stage stage2 = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Admin_CourseReport.fxml"));
+        stage2.setScene(new Scene(loader.load()));
+        Admin_CourseReportController admin_CourseReportController = loader.getController();
+        admin_CourseReportController.initialize(courseId);
+        stage2.setTitle("Course Report");
+        stage2.show();
 
     }
 
@@ -85,7 +91,7 @@ public class Admin_CoursePanelController {
         stage2.setScene(new Scene(loader.load()));
         Admin_GradeCourseController admin_GradeCourseController = loader.getController();
         admin_GradeCourseController.initialize(courseId);
-        stage2.setTitle("Currently Following Courses");
+        stage2.setTitle("Grade Course");
         stage2.show();
     }
 

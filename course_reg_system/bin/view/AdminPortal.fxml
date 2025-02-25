@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="344.0" prefWidth="353.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminPortalController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="274.0" prefWidth="353.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminPortalController">
    <children>
       <Label layoutX="80.0" layoutY="14.0" text="Admin Portal" textFill="#ff0505">
          <font>
@@ -32,15 +31,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button layoutX="89.0" layoutY="235.0" mnemonicParsing="false" onAction="#btnEnrollmentsOnAction" prefHeight="57.0" prefWidth="176.0" style="-fx-background-color: Green;" text="Enrollments" textFill="WHITE">
-         <font>
-            <Font name="☞Gilroy-Bold" size="18.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <ImageView fitHeight="69.0" fitWidth="73.0" layoutX="270.0" layoutY="307.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 80%;">
+      <ImageView fitHeight="69.0" fitWidth="73.0" layoutX="269.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 80%;">
          <image>
             <Image url="@../img/ijse@1x.png" />
          </image>
