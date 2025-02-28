@@ -67,7 +67,7 @@ The Course Registration System (CRS) automates the academic registration process
 2. **Configure the database**
    ```bash
    # Create a new MySQL database using the provided SQL file
-   mysql -u [username] -p [database_name] < crs_db_AshanManamperi.sql
+   mysql -u [username] -p crs_db < crs_db_AshanManamperi.sql
    ```
 
 3. **Launch the application**
